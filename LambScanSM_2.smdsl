@@ -1,8 +1,8 @@
-global_machine
+Application
 {
     states component, load_image, watch_live, exception_handler;
-    initial_state starting;
-    end_state the_end;
+    initial_state app_init;
+    end_state app_end;
     transitions
     {
         starting => component, load_image, watch_live, exception_handler, the_end;
@@ -42,7 +42,7 @@ global_machine
 :watch_live
 {
     states get_frames, save_frames;
-    initial_state load_streams;
+    initial_state watch_init;
     end_state close;
     transitions
     {
