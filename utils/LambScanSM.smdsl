@@ -1,0 +1,29 @@
+Application
+{
+    initial_state init;
+    states lambscan, send_message;
+    end_state end;
+    transitions
+    {
+        init => lambscan;
+        lambscan => end, send_message;
+        send_message => end;
+    };
+};
+
+:lambscan
+{
+    initial_state start_streams;
+    states get_frames, processing_and_filter, save, no_camera, no_memory;
+    end_state end_ls;
+    transitions
+    {
+        start_frames => get_frames, no_camera;
+        get_frames => processing_and_filter, no_camera, get_frames;
+        processing_and_filter => get_frames, save;
+        save => get_frames, no_memory;
+        no_camera => start_frames, end_ls;
+        no_memory => save, end_ls;
+    };
+};
+
